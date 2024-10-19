@@ -4,6 +4,7 @@ metadata:
   name: {{ .Release.Name }}-deployment
   namespace: {{ .Release.Namespace }}
 spec:
+<<<<<<< HEAD
   replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
@@ -18,3 +19,19 @@ spec:
         image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
         ports:
           - containerPort: {{ .Values.service.port }}
+=======
+  replicas: {{ .Values.replicaCount }}  # Check this line
+  selector:
+    matchLabels:
+      app: {{ .Release.Name }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Release.Name }}
+    spec:
+      containers:
+      - name: {{ .Release.Name }}-container
+        image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"  # Ensure this is correct
+        ports:
+          - containerPort: {{ .Values.service.port }}  # Ensure this is correct
+>>>>>>> 46d24b219bad379dcfd85f4f7f33fd8e9c44635f
